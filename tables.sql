@@ -32,3 +32,10 @@ CREATE TABLE stories (
     id INT,
     FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE follow (
+    person_id INT,
+    fol_id INT UNIQUE,
+    FOREIGN KEY (person_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (fol_id) REFERENCES users(id) ON DELETE CASCADE
+);
