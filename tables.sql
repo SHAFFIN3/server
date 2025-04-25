@@ -39,3 +39,23 @@ CREATE TABLE follow (
     FOREIGN KEY (person_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (fol_id) REFERENCES users(id) ON DELETE CASCADE
 );
+CREATE TABLE messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    message_type ENUM('text', 'image', 'video', 'file') DEFAULT 'text',
+    message_content TEXT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    edited BOOLEAN DEFAULT FALSE,
+    deleted BOOLEAN DEFAULT FALSE,
+    seen BOOLEAN DEFAULT FALSE,
+    
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE status(
+    id INT,
+    status BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
+);
