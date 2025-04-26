@@ -59,3 +59,18 @@ CREATE TABLE status(
     status BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (id) REFERENCES users(id) ON DELETE CASCADE
 );
+CREATE TABLE calls (
+    call_id INT AUTO_INCREMENT PRIMARY KEY,
+    caller_id INT NOT NULL,
+    receiver_id INT NOT NULL,
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_tokens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    fcm_token VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_user (user_id)
+);
