@@ -1,7 +1,6 @@
 <?php
 include "../connect.php";
 include "../headers.php";
-include "../send_notification.php"; // notification logic
 
 $response = array();
 
